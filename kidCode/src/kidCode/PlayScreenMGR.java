@@ -9,7 +9,6 @@ public class PlayScreenMGR {
 	static MazeMGR maze = new MazeMGR();
 	static CmdMGR userCode = new CmdMGR();
 	static Scanner input = new Scanner(System.in);
-	static int numCmd;
 	
 	
 	public static void welcomeScreen() {
@@ -29,6 +28,7 @@ public class PlayScreenMGR {
 	}
 
 	public static void mazeScreen() {
+		int numCmd;
 		while (true) {
 			maze.cloneMaze(player.getPlayerLevel());
 			maze.printMaze();
