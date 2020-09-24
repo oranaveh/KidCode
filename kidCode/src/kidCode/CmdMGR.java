@@ -50,7 +50,7 @@ public class CmdMGR {
 		curCmdBank = cmdBanks.get(levelNum);
 	}
 	
-	//
+	// constructor that initializes level 1 of cmdBanks
 	public CmdMGR() {
 		List<Cmd_e> lvl1 = new ArrayList<Cmd_e>();
 		lvl1.add(Cmd_e.MOVE);
@@ -59,10 +59,12 @@ public class CmdMGR {
 		cmdBanks.add(lvl1);
 	}
 	
+	// checks if there are more commands in cmdSeq
 	public boolean hasNextCmd() {
 		return (curCmdPtr < cmdSeq.size());
 	}
 	
+	// prints out the lists of cmdSeq and curCmdBank
 	public void print() {
 		System.out.println("Code Sequence:");
 		for (int i=0; i<cmdSeq.size(); i++) {

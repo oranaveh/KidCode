@@ -5,12 +5,19 @@ import java.io.IOException;
 import java.util.*;
 
 public class PlayScreenMGR {
+	// object that manages players information
 	static PlayersMGR player = new PlayersMGR();
+	
+	// object that manages the maze
 	static MazeMGR maze = new MazeMGR();
+	
+	// object that manages the code sequence and command bank
 	static CmdMGR userCode = new CmdMGR();
+	
+	// manages users input
 	static Scanner input = new Scanner(System.in);
 	
-	
+	// asks player to enter name or select a player
 	public static void welcomeScreen() {
 		Set<String> names= new HashSet<String>();
 		names = player.getNamesSet();
@@ -27,6 +34,20 @@ public class PlayScreenMGR {
 		}
 	}
 
+	// runs users code sequentially 
+	public static void runCode() {
+		userCode.initCodeRun();
+		while (userCode.hasNextCmd() && maze.runCmd(userCode.getNextCmd())) {
+			maze.printMaze();
+			System.out.println();
+			if (maze.isWin()) {
+				return;
+			}
+		}
+		
+	}
+
+	// manages the screen with the maze game
 	public static void mazeScreen() {
 		int numCmd;
 		while (true) {
@@ -76,19 +97,8 @@ public class PlayScreenMGR {
 		}
 	}
 	
-	public static void runCode() {
-		userCode.initCodeRun();
-		while (userCode.hasNextCmd() && maze.runCmd(userCode.getNextCmd())) {
-			maze.printMaze();
-			System.out.println();
-			if (maze.isWin()) {
-				return;
-			}
-		}
-		
-	}
-	
 	public static void main(String[] args) {
+		// running welcome screen 3 times to see if select player works
 		for (int i=0; i<3; i++) {
 			welcomeScreen();
 		}
