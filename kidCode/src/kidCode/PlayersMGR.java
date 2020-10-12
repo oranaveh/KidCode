@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class PlayersMGR {
-	// hash with key: players name and value: players information
+	// hash with key: players name and value: players level
 	HashMap<String, PlayerInfo> players = new HashMap<String, PlayerInfo>();
 
 	// name of current player

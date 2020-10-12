@@ -19,7 +19,8 @@ public class CmdMGR {
 	// bank of commands for current level, for the user, to add to cmdSeq
 	List<Cmd_e> curCmdBank = new ArrayList<Cmd_e>();
 	
-	// bank of commands per-level
+	// every level has its own list of commands
+	// is initialized in constructor
 	List<List<Cmd_e>> cmdBanks = new ArrayList<List<Cmd_e>>();
 	
 	/////////////

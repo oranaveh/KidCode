@@ -37,12 +37,14 @@ public class PlayScreenMGR {
 	// runs users code sequentially 
 	public static void runCode() {
 		userCode.initCodeRun();
+		//
 		while (userCode.hasNextCmd() && maze.runCmd(userCode.getNextCmd())) {
 			maze.printMaze();
 			System.out.println();
 			if (maze.isWin()) {
 				return;
 			}
+			//what happens if runcmd returns false because a bad move
 		}
 		
 	}
@@ -55,7 +57,7 @@ public class PlayScreenMGR {
 			maze.printMaze();
 			userCode.setLevel(player.getPlayerLevel());
 			userCode.print();
-			if (userCode.cmdSeq.size()>0) {
+			if (userCode.cmdSeq.size() > 0) {
 				System.out.println("Please select the desired action number:");
 				System.out.println("  (1) Add a command");
 				System.out.println("  (2) Delete a command");
@@ -63,35 +65,41 @@ public class PlayScreenMGR {
 				System.out.println("  (4) Exit game");
 				int sel = input.nextInt();
 				switch (sel) {
-				case 1 : 
+				case 1:
 					System.out.println(" please select the command number you would like to add");
 					numCmd = input.nextInt();
-					userCode.addCmd(numCmd-1);
+					userCode.addCmd(numCmd - 1);
 					break;
 				case 2:
 					System.out.println(" please select command number to delete");
 					numCmd = input.nextInt();
 					userCode.delCmd(numCmd);
 					break;
-				case 3 :
+				case 3:
 					runCode();
-					if(maze.isWin()) {
+					if (maze.isWin()) {
 						System.out.println("Excellent Job!!");
 						return;
 					} else {
 						System.out.println("Try again - press <Enter>");
-						try {System.in.read();}
-						catch (IOException e) {e.printStackTrace();}
+
+						try {
+							System.in.read();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
 					}
 					break;
-				case 4 :
+				case 4:
 					System.out.println("Goodbye :)");
 					return;
 				}
+				// player hasn't entered a command yet
 			} else {
 				System.out.println(" please select the command number you would like to add");
 				numCmd = input.nextInt();
-				userCode.addCmd(numCmd-1);
+				userCode.addCmd(numCmd - 1);
 				userCode.print();
 			}
 		}
